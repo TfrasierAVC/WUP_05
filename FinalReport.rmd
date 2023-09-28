@@ -1,7 +1,7 @@
 ---
 title: "Aides Drug"
-author: "Put your name here!"
-date: "put the date here"
+author: "Tyler Frasier "
+date: "9/27/2023"
 output: html_document
 ---
 
@@ -17,9 +17,23 @@ triUmp <-read.csv(file="triUmpsal.csv",header=TRUE)
 
 A new  preventative aides drug (triUmpsal) is under test in clinical trials. Consider only the DrugUsers, does this drug seem effective?  Hint - use dplyr to obtain that subpopulation with the filter command.
 
+
+```{r}
+library(dplyr) 
+Druggies = filter(triUmp, triUmp$DrugUser== "yes")
+```
+
+$H_0$ There is no difference on how affective the drug works.
+
+$H_A$ There is a difference on how affective thhe drug works.
+
+
 # Methods
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
+
+Thhe response variable is catigorical. The response variable is the infected whhich is based on the treatment of the new did drugs. The explanatory variable is treatment which is categorical. Thereforewe us cat~cat. 
+
 
 # Results
 
@@ -31,13 +45,43 @@ A new  preventative aides drug (triUmpsal) is under test in clinical trials. Con
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
 
+```{r}
+barchartGC(~infected + treatment,data=Druggies)
+barchartGC(~infected + treatment,data=Druggies, type="percent")
+```
+
+This bar graph shows people who has aids and took the drug did better than the people who didnt take the drug.The people who dont have aids who took the drug stayed fairly the same to thhose who didnt use the drug.
+
+
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
+```{r}
+table1 <- xtabs(~infected + treatment, data=Druggies)
+rowPerc(table1)
+colPerc(table1)
+```
+
+This graphh shows the people who had took the drug, 24% still had aids, and people who took the placebo 76% still hhad aids. The people withhout aids who took the drug 48% got aids and the people who took thhe placebo, 52% got aids.
+
+
 ## Inferential Results
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+the p value is 0.0000001242, which is smaller than 0.05, therefore i will reject the null. The people who have aids and take the drug, will not have aids anymore than the people who take the placebo. The people who have aids and dont have aids have the same results.
+
+```{r}
+#Druggies$infected = factor(Druggies$infected,c('none','aids'))
+Druggies$treatment = factor(Druggies$infected,c('none','aids'))
+```
 
 
 # Discussion and Conclusion
