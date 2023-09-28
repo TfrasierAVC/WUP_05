@@ -15,7 +15,7 @@ triUmp <-read.csv(file="triUmpsal.csv",header=TRUE)
 
 <!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?.  If you skimp in this section expect to be marked down in your grade. Paint a picture of the project a couple of paragraphs is expected!-->
 
-A new  preventative aides drug (triUmpsal) is under test in clinical trials. Consider only the DrugUsers, does this drug seem effective?  Hint - use dplyr to obtain that subpopulation with the filter command.
+A new  preventative aides drug (triUmpsal) is under test in clinical trials. Consider only the drugusers, Does this drug seem affective?  Hint - use dplyr to obtain that subpopulation with the filter command.
 
 
 ```{r}
@@ -76,14 +76,20 @@ chisqtestGC(table1)
 fisher.test(table1)
 ```
 
-the p value is 0.0000001242, which is smaller than 0.05, therefore i will reject the null. The people who have aids and take the drug, will not have aids anymore than the people who take the placebo. The people who have aids and dont have aids have the same results.
-
 ```{r}
 #Druggies$infected = factor(Druggies$infected,c('none','aids'))
-Druggies$treatment = factor(Druggies$infected,c('none','aids'))
+Druggies$treatment = factor(Druggies$treatment,c('placebo','drug'))
+table1 <-xtabs(~infected + treatment, data=Druggies)
+rowPerc(table1)
+colPerc(table1)
 ```
 
+the p value is 0.0000001242, which is smaller than 0.05, therefore i will reject the null. The people who have aids and take the drug, will not have aids anymore than the people who take the placebo. The people who have aids and dont have aids have the same results.
 
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+
+Consider only the drugusers, Does this drug seem effective? 
+Yes this drug seems effective because thhe people with aids who take drugs are more likely to not have aids anymore than people who mightve taken thhe placebo.
+
