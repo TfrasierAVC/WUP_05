@@ -91,5 +91,5 @@ the p value is 0.0000001242, which is smaller than 0.05, therefore i will reject
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
 
 Consider only the drugusers, Does this drug seem effective? 
-Yes this drug seems effective because thhe people with aids who take drugs are more likely to not have aids anymore than people who mightve taken thhe placebo.
-
+Yes this drug seems effective because thhe people with aids who take drugs are more likely to not have aids anymore than people who mightve taken thhe placebo. The p value is 0.0000001242 since its 
+smaller than 0.005, i will reject the null hhypothesis. therefore the people whho hhave aids while taking drugs are more likely to be cured than the people whho take the placebo. 
